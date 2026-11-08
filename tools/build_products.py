@@ -40,10 +40,10 @@ def build(data):
         if it.get("img"):
             media = f'<img src="{escape(it["img"])}" alt="{escape(it["title"])}" loading="lazy" width="600" height="600">'
         else:
-            media = (f'<div class="ph {c["color"]}" aria-hidden="true">'
-                     f'<svg viewBox="0 0 24 24">{ICONS[c["icon"]]}</svg><span>사진 준비 중</span></div>')
+            media = (f'<span class="ph {c["color"]}" aria-hidden="true">'
+                     f'<svg viewBox="0 0 24 24">{ICONS[c["icon"]]}</svg><span>사진 준비 중</span></span>')
         out.append(f'        <article class="product" data-cat="{c["id"]}">')
-        out.append(f'          <div class="product-media">{media}</div>')
+        out.append(f'          <button type="button" class="product-media" data-cat="{c["id"]}" aria-label="{escape(c["name"])}만 보기">{media}</button>')
         out.append(f'          <div class="product-body">')
         out.append(f'            <span class="product-cat">{escape(c["name"])}</span>')
         out.append(f'            <h3>{escape(it["title"])}</h3>')
