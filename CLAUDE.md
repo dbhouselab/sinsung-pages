@@ -3,7 +3,7 @@
 전주 완산구 스티커 인쇄업체 "신성스티커"의 한 페이지짜리 정적 홈페이지. 빌드 과정 없음.
 
 - 주소: `https://sinsung.dbhouse.net` (Cloudflare `dbhouse.net` 영역 — 바꾸기 전 `/home/dbhouse/문서/infra/공용설정.md` 확인)
-- GitHub: `dbhouselab/sinsung-pages`(공개), `main` 브랜치. Cloudflare Pages 연결은 사용자가 대시보드에서 함(2026-11-08 기준 아직 안 함)
+- GitHub: `dbhouselab/sinsung-pages`(공개), `main` 브랜치. Cloudflare Pages 프로젝트 `sinsung-pages` 에 연결됨(2026-11-08) — `main` 에 push 하면 1분 안팎에 자동 배포
 - `다운받은 사진/` 은 사용자가 넣는 원본 자료 폴더 — git 에서 뺌(.gitignore)
 - 파일: `index.html`, `style.css`, `images/logo.png`(원본 `logo.jpg`의 흰 배경을 지운 것), `robots.txt`, `sitemap.xml`
 - 디자인: 깔끔·신뢰감. 로고 색 — 파랑 `#1650a6`(주색), 빨강 `#8e1b1e`, 노랑 `#f2c230`, 청록 `#2a6e8a`
