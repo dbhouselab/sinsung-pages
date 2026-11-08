@@ -38,7 +38,7 @@ def build(data):
     for it in data["items"]:
         c = cats[it["cat"]]
         if it.get("img"):
-            media = f'<img src="{escape(it["img"])}" alt="{escape(it["title"])}" loading="lazy" width="600" height="600">'
+            media = f'<img src="{escape(it["img"])}" alt="{escape(it["title"])} 제작 예시 - 전주 신성스티커" loading="lazy" width="600" height="600">'
         else:
             media = (f'<span class="ph {c["color"]}" aria-hidden="true">'
                      f'<svg viewBox="0 0 24 24">{ICONS[c["icon"]]}</svg><span>사진 준비 중</span></span>')
