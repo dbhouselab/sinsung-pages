@@ -123,6 +123,17 @@ p { margin: 0 0 1em; }
 }
 .product-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
 .product-media:hover img { transform: scale(1.04); }
+.product-media { position: relative; }
+.more {
+  position: absolute; right: 10px; bottom: 10px; padding: .2em .7em; border-radius: 999px;
+  background: rgba(20, 30, 50, .72); color: #fff; font-size: .85rem; font-weight: 700;
+}
+.products.is-cat .more { display: none; }
+.products:not(.is-cat) .product[data-rep] .body-item,
+.products.is-cat .body-type { display: none; }
+.type-info { margin: 0 0 14px; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: .9rem; }
+.type-info dt { font-weight: 700; color: var(--blue); white-space: nowrap; }
+.type-info dd { margin: 0; color: var(--sub); }
 .product-media:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
 .ph {
   width: 100%; height: 100%; display: flex; flex-direction: column;
@@ -153,7 +164,7 @@ p { margin: 0 0 1em; }
 }
 
 /* 소개 체크 목록 */
-.checks { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 24px; }
+.checks { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; }
 .checks li { padding-left: 30px; position: relative; margin: 0; }
 .checks li::before {
   content: ""; position: absolute; left: 0; top: .35em; width: 18px; height: 18px; border-radius: 50%;
@@ -161,9 +172,12 @@ p { margin: 0 0 1em; }
 }
 
 /* 오시는 길 */
+#location .section-head { margin-bottom: 16px; }
+#location .section-head h2 { margin-bottom: .35em; }
+#location .section-head p { margin-bottom: .6em; line-height: 1.6; }
 .location { max-width: 760px; }
-.info { margin: 0; background: #fff; border-radius: var(--radius); border: 1px solid var(--line); padding: 8px 28px; }
-.info > div { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.info { margin: 0; background: #fff; border-radius: var(--radius); border: 1px solid var(--line); padding: 2px 22px; }
+.info > div { display: grid; grid-template-columns: 56px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .info > div:last-child { border-bottom: 0; align-items: center; }
 .info dt { font-weight: 700; color: var(--blue); }
 .info dd { margin: 0; }
@@ -213,7 +227,9 @@ p { margin: 0 0 1em; }
   .products { gap: 12px; }
   .product-body { padding: 14px 14px 16px; }
   .product p { font-size: .88rem; }
-  .info { padding: 4px 18px; }
+  .type-info { grid-template-columns: 1fr; gap: 0; font-size: .86rem; }
+  .type-info dd + dt { margin-top: 6px; }
+  .info { padding: 0 16px; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .mobile-bar {
     display: grid; grid-template-columns: 2fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;

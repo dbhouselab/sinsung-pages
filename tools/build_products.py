@@ -35,22 +35,36 @@ def build(data):
     out.append("      </div>")
     out.append(f'      <p class="cat-desc" id="cat-desc">{escape(ALL_DESC)}</p>')
     out.append('      <div class="products">')
-    for it in data["items"]:
-        c = cats[it["cat"]]
-        if it.get("img"):
-            media = f'<img src="{escape(it["img"])}" alt="{escape(it["title"])} 제작 예시 - 전주 신성스티커" loading="lazy" width="600" height="600">'
-        else:
-            media = (f'<span class="ph {c["color"]}" aria-hidden="true">'
-                     f'<svg viewBox="0 0 24 24">{ICONS[c["icon"]]}</svg><span>사진 준비 중</span></span>')
-        out.append(f'        <article class="product" data-cat="{c["id"]}">')
-        out.append(f'          <button type="button" class="product-media" data-cat="{c["id"]}" aria-label="{escape(c["name"])}만 보기">{media}</button>')
-        out.append(f'          <div class="product-body">')
-        out.append(f'            <span class="product-cat">{escape(c["name"])}</span>')
-        out.append(f'            <h3>{escape(it["title"])}</h3>')
-        out.append(f'            <p>{escape(it["desc"])}</p>')
-        out.append(f'            <a href="tel:{PHONE}" class="product-ask">견적 문의</a>')
-        out.append("          </div>")
-        out.append("        </article>")
+    # 품목 순서대로, 품목마다 첫 카드가 대표('전체' 탭에서는 대표만 보인다)
+    for c in data["categories"]:
+        group = [it for it in data["items"] if it["cat"] == c["id"]]
+        for n, it in enumerate(group):
+            rep = n == 0
+            if it.get("img"):
+                media = f'<img src="{escape(it["img"])}" alt="{escape(it["title"])} 제작 예시 - 전주 신성스티커" loading="lazy" width="600" height="600">'
+            else:
+                media = (f'<span class="ph {c["color"]}" aria-hidden="true">'
+                         f'<svg viewBox="0 0 24 24">{ICONS[c["icon"]]}</svg><span>사진 준비 중</span></span>')
+            if rep and len(group) > 1:
+                media += f'<span class="more">+{len(group) - 1}</span>'
+            attrs = f'class="product" data-cat="{c["id"]}"' + (' data-rep' if rep else ' hidden')
+            out.append(f'        <article {attrs}>')
+            out.append(f'          <button type="button" class="product-media" data-cat="{c["id"]}" aria-label="{escape(c["name"])}만 보기">{media}</button>')
+            if rep:
+                # '전체' 탭에서 보이는 종류 설명(특징·사용처)
+                out.append(f'          <div class="product-body body-type">')
+                out.append(f'            <h3>{escape(c["name"])}</h3>')
+                out.append(f'            <dl class="type-info"><dt>특징</dt><dd>{escape(c["feature"])}</dd><dt>사용처</dt><dd>{escape(c["use"])}</dd></dl>')
+                out.append(f'            <a href="tel:{PHONE}" class="product-ask">견적 문의</a>')
+                out.append("          </div>")
+            # 품목 탭에서 보이는 사진별 설명
+            out.append(f'          <div class="product-body body-item">')
+            out.append(f'            <span class="product-cat">{escape(c["name"])}</span>')
+            out.append(f'            <h3>{escape(it["title"])}</h3>')
+            out.append(f'            <p>{escape(it["desc"])}</p>')
+            out.append(f'            <a href="tel:{PHONE}" class="product-ask">견적 문의</a>')
+            out.append("          </div>")
+            out.append("        </article>")
     out.append("      </div>")
     return "\n".join(out)
 
