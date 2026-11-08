@@ -15,5 +15,10 @@
 - 영업: 월~금, 토·일 휴무(2026-11-08 사용자 결정). 시각은 아직 모름
 - 제작 품목(스티커 8종, 2026-11-08 사용자 제공): 일반, 유포지, 바코드, 로타리 롤, 은무데드롱, 홀로그램, 은무지/금무지, 투명지. 설명 문구는 Claude 가 씀
 
+## 제작 품목 구역 (탭 + 사진 카드, 금정특수인쇄 상품 목록 방식을 참고)
+- 데이터는 `products.json`(categories = 탭 8개, items = 카드). 고친 뒤 `python3 tools/build_products.py` → `index.html` 의 `<!-- PRODUCTS:START -->` ~ `END` 사이를 다시 만든다. 그 사이는 손으로 고치지 않는다
+- 카드 사진은 `images/products/`. 지금 8장은 `tools/make_samples.py` 로 그린 **예시 그림**(2026-11-08). 실제 사진이 오면(`다운받은 사진/`) 정사각형 600px 정도 JPG 로 줄여 넣고 items 의 img 를 바꾼다. 한 품목에 사진 여러 장이면 items 를 여러 개로
+- 탭 필터는 `index.html` 맨 아래 작은 스크립트. 카드는 HTML 에 그대로 있어 검색엔진이 읽는다
+
 ## 미리 보기
 `python3 -m http.server 8765` → http://localhost:8765
